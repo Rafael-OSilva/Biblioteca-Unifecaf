@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Biblioteca UniFECAF | Conhecimento sem fronteiras</title>
+  <!-- Font Awesome 6 (gratuito, ícones) -->
+   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* container padrão para centralizar conteúdo */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== HEADER ========== */
+    header {
+      background-color: #000000; /* preto puro */
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .logo h2 {
+      font-size: 1.7rem;
+      letter-spacing: -0.5px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff, #d4d4d4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo span {
+      color: #f5c518;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 1.05rem;
+    }
+
+    .nav-links a:hover {
+      color: #f5c518;
+      border-bottom: 2px solid #f5c518;
+      padding-bottom: 4px;
+    }
+
+    /* responsivo header */
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .nav-links {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    /* ========== BANNER ========== */
+    .banner {
+      background-color: #e0e4e8; /* cinza claro */
+      padding: 3rem 0;
+      text-align: center;
+    }
+    .banner-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .banner-content h1 {
+      font-size: 2.5rem;
+      color: #1e2a3e;
+      margin-bottom: 1rem;
+    }
+    .banner-content p {
+      font-size: 1.2rem;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+    }
+    .placeholder-img {
+      background: #b0b7bc;
+      border-radius: 28px;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .placeholder-img i {
+      font-size: 4rem;
+      color: #2c3e50;
+    }
+    .placeholder-img span {
+      font-size: 1.2rem;
+      font-weight: 500;
+      background: #f0f3f5;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+    }
+
+    /* ========== SOBRE (CINZA ESCURO) ========== */
+    .sobre {
+      background-color: #2d2f36; /* cinza escuro elegante */
+      color: #f0f0f0;
+      padding: 4rem 0;
+    }
+    .sobre h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: #ffdd77;
+    }
+    .sobre-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sobre-texto {
+      flex: 1;
+      min-width: 200px;
+    }
+    .sobre-texto p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .sobre-imagem-central {
+      flex: 0.8;
+      text-align: center;
+    }
+    .sobre-imagem-central img {
+      max-width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .sobre-pequenas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .mini-card {
+      background: #3a3c44;
+      border-radius: 20px;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+    .mini-card i {
+      font-size: 1.4rem;
+      color: #f5c518;
+    }
+
+    /* ========== DESTAQUE (IMAGEM GRANDE CENTRAL) ========== */
+    .destaque {
+      background: #f4f7fa;
+      padding: 3rem 0;
+      text-align: center;
+    }
+    .destaque-imagem {
+      max-width: 1000px;
+      margin: 0 auto;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    }
+    .destaque-imagem img {
+      width: 100%;
+      display: block;
+      height: auto;
+      transition: transform 0.4s;
+    }
+    .destaque-imagem img:hover {
+      transform: scale(1.02);
+    }
+
+    /* ========== LIVROS (CARDS GRADE) ========== */
+    .livros {
+      padding: 4rem 0;
+      background: #ffffff;
+    }
+    .livros h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      color: #1a2a3a;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .card-livro {
+      background: #fff;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid #ececec;
+    }
+    .card-livro:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 35px rgba(0,0,0,0.12);
+    }
+    .card-img {
+      height: 220px;
+      background-color: #e9eef3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.8rem;
+      color: #2c3e66;
+    }
+    .card-conteudo {
+      padding: 1.3rem;
+    }
+    .card-conteudo h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .avaliacao {
+      color: #ffb81c;
+      margin: 0.5rem 0;
+      letter-spacing: 2px;
+    }
+    .avaliacao span {
+      color: #ccc;
+    }
+    .descricao {
+      color: #4a5568;
+      margin: 0.8rem 0;
+      font-size: 0.9rem;
+    }
+    .btn-card {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 0.6rem;
+      width: 100%;
+      font-size: 0.9rem;
+    }
+    .btn-card:hover {
+      background: #f5c518;
+      color: #1e1e1e;
+    }
+
+    /* ========== NOVIDADES (FUNDO PRETO) ========== */
+    .novidades {
+      background-color: #0a0a0a;
+      color: #eee;
+      padding: 4rem 0;
+    }
+    .novidades h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #f5c518;
+    }
+    .novidades-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .novidade-item {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: #151515;
+      border-radius: 28px;
+      padding: 1rem;
+      align-items: center;
+      transition: 0.2s;
+    }
+    .nov-img {
+      background: #2c2c2c;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: #f5c518;
+    }
+    .nov-texto {
+      flex: 1;
+    }
+    .nov-texto h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+    .nov-texto p {
+      color: #bdbdbd;
+    }
+
+    /* ========== INFO FINAL (CINZA CLARO) ========== */
+    .info {
+      background-color: #d9dfe5;
+      padding: 3.5rem 0;
+    }
+    .info-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+    .info-texto {
+      flex: 1;
+    }
+    .info-texto h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #1e2f3f;
+    }
+    .info-texto p {
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+    .btn-contato {
+      background: #000;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 40px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    .info-imagem {
+      flex: 0.9;
+      text-align: center;
+    }
+    .info-imagem img {
+      max-width: 100%;
+      border-radius: 32px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background-color: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.85rem;
+    }
+    footer p {
+      margin: 5px 0;
+    }
+    footer a {
+      color: #f5c518;
+      text-decoration: none;
+    }
+
+    /* responsividade geral */
+    @media (max-width: 850px) {
+      .sobre-grid {
+        flex-direction: column;
+      }
+      .info-wrapper {
+        flex-direction: column;
+        text-align: center;
+      }
+      .novidade-item {
+        justify-content: center;
+        text-align: center;
+      }
+      .container {
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 1. HEADER PRETO -->
+<header>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <h2>📖 Biblioteca <span>UniFECAF</span></h2>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Início</a></li>
+        <li><a href="#livros-section">Livros</a></li>
+        <li><a href="#novidades-section">Novidades</a></li>
+        <li><a href="#contato-info">Contato</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- 2. BANNER PRINCIPAL (CINZA CLARO) -->
+<section class="banner">
+  <div class="container">
+    <div class="banner-content">
+      <h1>✨ Bem-vindo à Biblioteca Virtual ✨</h1>
+      <p>Conhecimento ilimitado, livros digitais e físicos, tudo em um só lugar.</p>
+      <div class="placeholder-img">
+        <i class="fas fa-book-open"></i>
+        <i class="fas fa-graduation-cap"></i>
+        <span>📚 +5.000 títulos disponíveis</span>
+        <i class="fas fa-laptop"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. SOBRE (CINZA ESCURO) -->
+<section class="sobre">
+  <div class="container">
+    <h2>Sobre a nossa biblioteca</h2>
+    <div class="sobre-grid">
+      <div class="sobre-texto">
+        <p><i class="fas fa-quote-left" style="color:#f5c518"></i> A Biblioteca UniFECAF nasceu para democratizar o acesso ao saber. Oferecemos um acervo rico em literatura, tecnologia, ciências e muito mais.</p>
+        <p>Com parcerias internacionais e plataforma digital de última geração, nossos alunos encontram obras raras e best-sellers com facilidade.</p>
+      </div>
+      <div class="sobre-imagem-central">
+        <!-- imagem ilustrativa (placeholder via font awesome) -->
+        <img src="https://placehold.co/400x240/e9ecef/2c3e50?text=Acervo+UniFECAF" alt="Acervo biblioteca" style="background:#cdd3d9;">
+      </div>
+      <div class="sobre-texto">
+        <p>Missão: inspirar aprendizado contínuo. Visão: referência nacional em inovação bibliotecária.</p>
+        <p><i class="fas fa-check-circle" style="color:#f5c518"></i> Acesso remoto 24h <br>
+        <i class="fas fa-check-circle" style="color:#f5c518"></i> Salas de estudo virtuais</p>
+      </div>
+    </div>
+    <div class="sobre-pequenas">
+      <div class="mini-card"><i class="fas fa-chalkboard-user"></i> <span>Guias de leitura</span></div>
+      <div class="mini-card"><i class="fas fa-head-side-vr"></i> <span>Realidade aumentada</span></div>
+      <div class="mini-card"><i class="fas fa-calendar-alt"></i> <span>Clube do livro</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. DESTAQUE (IMAGEM CENTRAL) -->
+<section class="destaque">
+  <div class="container">
+    <div class="destaque-imagem">
+      <img src="https://placehold.co/1200x500/b7c9e2/2c3e50?text=BIBLIOTECA+MODERNA+UNIFECAF" alt="Biblioteca destaque">
+    </div>
+  </div>
+</section>
+
+<!-- 5. NOSSOS LIVROS (CARDS - GRADE 3x2 OU FLEX) -->
+<section class="livros" id="livros-section">
+  <div class="container">
+    <h2>📚 Nossos livros</h2>
+    <div class="cards-grid" id="booksContainer">
+      <!-- Os livros serão renderizados via JavaScript (para facilitar manutenção e deixar dinâmico) -->
+    </div>
+  </div>
+</section>
+
+<!-- 6. NOVIDADES (FUNDO PRETO) -->
+<section class="novidades" id="novidades-section">
+  <div class="container">
+    <h2>🔥 Novidades na biblioteca</h2>
+    <div class="novidades-list" id="novidadesList">
+      <!-- itens via JS também, mas com conteúdo estático que pode ser manipulado -->
+    </div>
+  </div>
+</section>
+
+<!-- 7. SEÇÃO FINAL (CINZA CLARO) - INFORMAÇÕES / CONTATO -->
+<section class="info" id="contato-info">
+  <div class="container">
+    <div class="info-wrapper">
+      <div class="info-texto">
+        <h3>Fale com a nossa equipe</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Campus central: Av. Paulista, 1234 - São Paulo, SP</p>
+        <p><i class="fas fa-phone-alt"></i> Central de atendimento: (11) 4002-8922</p>
+        <p><i class="fas fa-envelope"></i> contato@bibliotecaunifecaf.edu.br</p>
+        <p>Horário de funcionamento: Segunda a Sexta, 8h às 22h | Sábado 9h às 16h</p>
+        <button class="btn-contato" id="btnContatoMsg">Enviar mensagem <i class="fas fa-paper-plane"></i></button>
+      </div>
+      <div class="info-imagem">
+        <img src="https://placehold.co/500x320/e2e8f0/2d3748?text=Atendimento+UniFECAF" alt="Atendimento">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. RODAPÉ -->
+<footer>
+  <div class="container">
+    <p>© 2025 Biblioteca UniFECAF — Todos os direitos reservados.</p>
+    <p>Desenvolvido com <i class="fas fa-heart" style="color:#f5c518"></i> para democratizar o conhecimento.</p>
+    <p><a href="#">Política de Privacidade</a> | <a href="#">Acessibilidade</a></p>
+  </div>
+</footer>
+
+<script>
+  // ========== BASE DE DADOS DE LIVROS (CARDS) ==========
+  const livrosData = [
+    {
+      id: 1,
+      titulo: "O Poder do Hábito",
+      avaliacao: 5,
+      descricao: "Charles Duhigg revela como hábitos moldam nossa vida e como transformá-los.",
+      icone: "fas fa-brain"
+    },
+    {
+      id: 2,
+      titulo: "Dom Casmurro",
+      avaliacao: 4,
+      descricao: "Machado de Assis e a obra-prima da literatura brasileira, suspense e ciúmes.",
+      icone: "fas fa-feather-alt"
+    },
+    {
+      id: 3,
+      titulo: "Código Limpo",
+      avaliacao: 5,
+      descricao: "Robert C. Martin ensina boas práticas para programadores profissionais.",
+      icone: "fas fa-code"
+    },
+    {
+      id: 4,
+      titulo: "A Arte da Guerra",
+      avaliacao: 4,
+      descricao: "Sun Tzu, estratégias milenares aplicadas a negócios e vida.",
+      icone: "fas fa-fist-raised"
+    },
+    {
+      id: 5,
+      titulo: "Sapiens: Uma Breve História",
+      avaliacao: 5,
+      descricao: "Yuval Noah Harari explora a jornada da humanidade.",
+      icone: "fas fa-globe-americas"
+    },
+    {
+      id: 6,
+      titulo: "Python para Análise de Dados",
+      avaliacao: 4,
+      descricao: "Wes McKinney, pandas e numpy na prática para cientistas de dados.",
+      icone: "fas fa-chart-line"
+    }
+  ];
+
+  // Função para renderizar estrelas com base na nota
+  function renderStars(rating) {
+    let starsHtml = '';
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        starsHtml += '<i class="fas fa-star"></i>';
+      } else {
+        starsHtml += '<i class="far fa-star"></i>';
+      }
+    }
+    return starsHtml;
+  }
+
+  // Container dos livros
+  const booksContainer = document.getElementById('booksContainer');
+  if (booksContainer) {
+    livrosData.forEach(livro => {
+      const card = document.createElement('div');
+      card.className = 'card-livro';
+      card.innerHTML = `
+        <div class="card-img">
+          <i class="${livro.icone}" style="font-size: 3rem;"></i>
+        </div>
+        <div class="card-conteudo">
+          <h3>${livro.titulo}</h3>
+          <div class="avaliacao">${renderStars(livro.avaliacao)} <span>(${livro.avaliacao}.0)</span></div>
+          <p class="descricao">${livro.descricao}</p>
+          <button class="btn-card" data-titulo="${livro.titulo}">Ver mais <i class="fas fa-arrow-right"></i></button>
+        </div>
+      `;
+      booksContainer.appendChild(card);
+    });
+
+    // Adicionar evento nos botões "Ver mais" com alert interativo (JS simples)
+    document.querySelectorAll('.btn-card').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const titulo = btn.getAttribute('data-titulo');
+        alert(`📖 Detalhes do livro "${titulo}"\nEm breve você poderá acessar a prévia completa! Acesse nossa plataforma.`);
+      });
+    });
+  }
+
+  // ========== NOVIDADES DINÂMICAS (conteúdo seguindo o wireframe: imagens/texto) ==========
+  const novidadesItens = [
+    {
+      icone: "fas fa-microphone-alt",
+      titulo: "Clube de Leitura: Grandes Clássicos",
+      descricao: "Toda quinta-feira, às 19h, debate sobre 'Dom Casmurro' e novos títulos."
+    },
+    {
+      icone: "fas fa-laptop-code",
+      titulo: "Acervo digital +500 novos e-books",
+      descricao: "Lançamentos na área de tecnologia e ciência de dados. Acesso imediato."
+    },
+    {
+      icone: "fas fa-user-graduate",
+      titulo: "Workshop de Metodologia Ativa",
+      descricao: "Evento presencial e online dia 20/05. Inscreva-se gratuitamente!"
+    }
+  ];
+
+  const novidadesList = document.getElementById('novidadesList');
+  if (novidadesList) {
+    novidadesItens.forEach(item => {
+      const novDiv = document.createElement('div');
+      novDiv.className = 'novidade-item';
+      novDiv.innerHTML = `
+        <div class="nov-img">
+          <i class="${item.icone}"></i>
+        </div>
+        <div class="nov-texto">
+          <h4>${item.titulo}</h4>
+          <p>${item.descricao}</p>
+        </div>
+      `;
+      novidadesList.appendChild(novDiv);
+    });
+  }
+
+  // ========== BOTÃO DE CONTATO NA SEÇÃO FINAL (alert simpático) ==========
+  const btnContato = document.getElementById('btnContatoMsg');
+  if (btnContato) {
+    btnContato.addEventListener('click', () => {
+      alert("📧 Em breve retornaremos! Envie sua mensagem para contato@bibliotecaunifecaf.edu.br ou utilize nosso chat online.");
+    });
+  }
+
+  // ========== ANIMAÇÃO SUAVE NO MENU (scroll suave para seções) ==========
+  const linksMenu = document.querySelectorAll('.nav-links a');
+  linksMenu.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') {
+        // inicio da pagina
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        e.preventDefault();
+        return;
+      }
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+
+  // pequeno ajuste: garantir que o banner também fique com uma imagem placeholder visualmente agradável
+  // (já está tudo ok)
+  // Adicionar também efeito de clique nos cards de novidades? não obrigatório
+  console.log("Projeto Biblioteca UniFECAF carregado com cards, layout alternado e interatividade!");
+</script>
+</body>
+</html>

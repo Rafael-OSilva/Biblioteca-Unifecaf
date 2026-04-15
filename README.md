@@ -31,23 +31,14 @@ Este projeto consiste em um site institucional para a **Biblioteca UniFECAF**, d
 - ✅ **Favicon** personalizado com emoji de livro
 
 ## 🖼️ Estrutura das Seções
-┌─────────────────────────────────────┐
 │ HEADER (Preto) │
-├─────────────────────────────────────┤
 │ BANNER (Cinza claro) │
-├─────────────────────────────────────┤
 │ SOBRE (Cinza escuro) │
-├─────────────────────────────────────┤
 │ DESTAQUE (Imagem central) │
-├─────────────────────────────────────┤
 │ NOSSOS LIVROS (Cards em grade) │
-├─────────────────────────────────────┤
 │ NOVIDADES (Fundo preto) │
-├─────────────────────────────────────┤
 │ INFO/CONTATO (Cinza claro) │
-├─────────────────────────────────────┤
 │ FOOTER │
-└─────────────────────────────────────┘
 
 
 ## 🛠️ Tecnologias Utilizadas
